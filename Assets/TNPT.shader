@@ -7,6 +7,7 @@
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
         _Cube ("cubemap",Cube) = " "{}
+        _Alpha ("Alpha", Range(0,1)) = 0.0
     }
     SubShader
     {
@@ -33,6 +34,7 @@
         half _Glossiness;
         half _Metallic;
         fixed4 _Color;
+        float _Alpha;
 
 
         // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
@@ -57,7 +59,7 @@
             // Metallic and smoothness come from slider variables
             o.Metallic = 0;
             o.Smoothness = _Glossiness;
-            o.Alpha = 1;
+            o.Alpha = _Alpha;
 
         }
         void vert(inout appdata_full v)
